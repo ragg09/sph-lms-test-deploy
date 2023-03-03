@@ -13,6 +13,7 @@
   },
   "plugins": ["react"],
   "rules": {
+    "@typescript-eslint/member-delimiter-style": "off",
     "react/function-component-definition": [
       2,
       {
