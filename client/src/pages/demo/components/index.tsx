@@ -1,10 +1,17 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import Iframe from '@/src/shared/components/Iframe';
 import Breadcrumbs from '@/src/shared/components/Breadcrumbs';
 import Card from '@/src/shared/components/Card';
+import Pagination from '@/src/shared/components/Pagination';
 
 const DemoComponent: React.FunctionComponent = () => {
+  // sets up the state of the page to track user interaction
+  const [currentPage, setCurrentPage] = useState(2);
+  const handleChangePageEvent = (page: number): void => {
+    setCurrentPage(page);
+  };
+
   return (
     <Fragment>
       <div className="container mx-auto">
@@ -94,6 +101,29 @@ const DemoComponent: React.FunctionComponent = () => {
             <h1>Props: Breadcrumbs</h1>
             <div className="bg-gray-300 p-[5px]">
               <p>path = (array of object) text:string, url: string</p>
+            </div>
+          </div>
+        </div>
+
+        <br />
+        <div className="p-4 border first-line:-b border-black" id="pagination">
+          <Pagination
+            maxPages={5}
+            totalPages={10}
+            currentPage={currentPage}
+            onChangePage={handleChangePageEvent}
+          />
+          <div className="mt-[5px]">
+            <h1>Props: Pagination</h1>
+            <div className="bg-gray-300 p-[5px]">
+              maxPages = number || ex. maxPages = &#123;{5}&#125;
+              <br />
+              totalPages = number || ex. totalPages = &#123;{10}&#125;
+              <br />
+              currentPage = number || ex. currentPage = &#123;{2}&#125;
+              <br />
+              onChangePage = function || ex. onChangePage = function that tracks
+              the event of the page
             </div>
           </div>
         </div>
