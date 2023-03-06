@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { Fragment } from 'react';
 import Iframe from '@/src/shared/components/Iframe';
+import Breadcrumbs from '@/src/shared/components/Breadcrumbs';
 import Card from '@/src/shared/components/Card';
 
 const DemoComponent: React.FunctionComponent = () => {
@@ -8,11 +9,25 @@ const DemoComponent: React.FunctionComponent = () => {
     <Fragment>
       <div className="container mx-auto">
         <h1>Components Demo Page</h1>
+
+        <div className="m-4 border">
+          <h2>
+            <b>Jump to</b>
+          </h2>
+          <a href="#iframe">Iframe</a>
+          <br />
+          <a href="#breadcrumbs">Breadcrumbs</a>
+        </div>
         <br />
         <hr className="w-3/4 mx-auto" />
 
         <div className="p-4 border">
-          <Iframe src="https://www.youtube.com/embed/HGl75kurxok" />
+          <h1>Component: Iframe</h1>
+          <br />
+          <Iframe
+            src="https://www.youtube.com/embed/HGl75kurxok"
+            className="border"
+          />
 
           <div className="mt-[5px]">
             <h1>Props: Iframe</h1>
@@ -25,24 +40,61 @@ const DemoComponent: React.FunctionComponent = () => {
                 src = (string)[required] ex.
                 src="https://www.youtube.com/embed/HGl75kurxok"
               </p>
-              <p>title = (string)["auto"] ex. title="Relaxing Music"</p>
+              <p id="iframe">
+                title = (string)["auto"] ex. title="Relaxing Music"
+              </p>
             </div>
           </div>
         </div>
 
         <br />
         <hr className="w-3/4 mx-auto" />
-      </div>
 
-      <div className="p-4 border -b border-black" id="card">
-        <Card height='h-30' title='Sample Card'>
-          <main>This is a card component</main>
-        </Card>
-        <div className="mt-[5px]">
-          <h1>Props: Card</h1>
-          <div className="bg-gray-300 p-[5px]">
-            height: string || ex. height=&apos;h-20&apos; <br />
-            title: string || ex. title=&apos;Sample Title&apos; <br />
+        <div className="p-4 border -b border-black" id="card">
+          <Card height="h-30" title="Sample Card">
+            <main>This is a card component</main>
+          </Card>
+          <div className="mt-[5px]">
+            <h1>Props: Card</h1>
+            <div className="bg-gray-300 p-[5px]">
+              height: string || ex. height=&apos;h-20&apos; <br />
+              title: string || ex. title=&apos;Sample Title&apos; <br />
+            </div>
+          </div>
+        </div>
+
+        <br />
+        <hr className="w-3/4 mx-auto" />
+
+        <div className="p-4 border">
+          <h1>Component: Breadcrumbs</h1>
+
+          <br />
+
+          <Breadcrumbs
+            paths={[
+              {
+                text: 'Profile',
+                url: '/profile'
+              },
+              {
+                text: 'User Information',
+                url: '/profile/information'
+              },
+              {
+                text: 'Component Index',
+                url: '/demo/components'
+              }
+            ]}
+          />
+
+          <br />
+
+          <div className="mt-[5px]" id="breadcrumbs">
+            <h1>Props: Breadcrumbs</h1>
+            <div className="bg-gray-300 p-[5px]">
+              <p>path = (array of object) text:string, url: string</p>
+            </div>
           </div>
         </div>
       </div>
