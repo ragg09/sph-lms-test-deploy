@@ -1,9 +1,10 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { Fragment, useState } from 'react';
 import Iframe from '@/src/shared/components/Iframe';
-import Breadcrumbs from '@/src/shared/components/Breadcrumbs';
+import Textfield from '@/src/shared/components/TextField';
 import Card from '@/src/shared/components/Card';
 import Pagination from '@/src/shared/components/Pagination';
+import Breadcrumbs from '@/src/shared/components/Breadcrumbs';
 
 const DemoComponent: React.FunctionComponent = () => {
   // sets up the state of the page to track user interaction
@@ -70,6 +71,33 @@ const DemoComponent: React.FunctionComponent = () => {
           </div>
         </div>
 
+        <div className="p-4 border" id="text-field">
+          <Textfield
+            label="Description"
+            placeholder="Enter a description"
+            width={50}
+            height={10}
+            className="text-xl border border-black rounded-lg rows"
+            resizable={true}
+          ></Textfield>
+
+          <div className="mt-[5px]">
+            <h1>Props: Text-field</h1>
+
+            <div className="bg-gray-300 p-[5px]">
+              <p> label = (string) ex. label="Description"</p>
+              <p> placeholder = (string)ex. placeholder="Enter Description"</p>
+              <p> width = (number) ex. width=10 </p>
+              <p> height = (number)ex. height=10 </p>
+              <p>
+                fontsize = (string)ex. fontsize="text-s" | fontsize="text-2xl"
+              </p>
+              <p>
+                resizable = (boolean) ex. resizable="true" | resizable="false"
+              </p>
+            </div>
+          </div>
+        </div>
         <br />
         <hr className="w-3/4 mx-auto" />
 
