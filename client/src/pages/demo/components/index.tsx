@@ -6,6 +6,7 @@ import Card from '@/src/shared/components/Card';
 import Pagination from '@/src/shared/components/Pagination';
 import Breadcrumbs from '@/src/shared/components/Breadcrumbs';
 import Dropdown from '@/src/shared/components/Dropdown';
+import InputField from '@/src/shared/components/InputField';
 
 const DemoComponent: React.FunctionComponent = () => {
   // sets up the state of the page to track user interaction
@@ -26,6 +27,8 @@ const DemoComponent: React.FunctionComponent = () => {
           <a href="#iframe">Iframe</a>
           <br />
           <a href="#breadcrumbs">Breadcrumbs</a>
+          <br />
+          <a href="#inputField">Input Field</a>
         </div>
         <br />
         <hr className="w-3/4 mx-auto" />
@@ -174,6 +177,45 @@ const DemoComponent: React.FunctionComponent = () => {
               label: string || ex. label=&apos;Dropdown menu&apos;
               <br />
               Note: Option name is the same for anchor reference
+            </div>
+          </div>
+        </div>
+
+        <br />
+        <hr className="w-3/4 mx-auto" />
+
+        <div className="p-4 border">
+          <h1>Component: Input Field</h1>
+
+          <InputField
+            placeholder="Testing"
+            id="testing"
+            type="text"
+            width="50%"
+          />
+
+          <InputField
+            label="Password Text"
+            placeholder="Password"
+            id="testing"
+            type="password"
+            height="100px"
+          />
+
+          <br />
+
+          <div className="mt-[5px]" id="inputField">
+            <h1>Props: Input Field</h1>
+
+            <div className="bg-gray-300 p-[5px]">
+              <p>label: (string)[""] ex. label="Testing"</p>
+              <p> placeholder: (string)[""] ex. placeholder="Testing"</p>
+              <p>
+                type: (string)["text"] ex. type="text | email | passwrod | etc"
+              </p>
+              <p> id: (string)[""] ex. label="Testing"</p>
+              <p> width: "100%" | "50px",</p>
+              <p>height: "100%" | "50px"</p>
             </div>
           </div>
         </div>
