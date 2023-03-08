@@ -8,6 +8,7 @@ import Breadcrumbs from '@/src/shared/components/Breadcrumbs';
 import Dropdown from '@/src/shared/components/Dropdown';
 import InputField from '@/src/shared/components/InputField';
 import Searchbar from '@/src/shared/components/SearchBar/SearchBar';
+import Collapse from '@/src/shared/components/Collapse/Collapse';
 
 const DemoComponent: React.FunctionComponent = () => {
   // sets up the state of the page to track user interaction
@@ -229,6 +230,27 @@ const DemoComponent: React.FunctionComponent = () => {
               <p> width: "100%" | "50px",</p>
               <p>height: "100%" | "50px"</p>
             </div>
+          </div>
+        </div>
+        <br />
+        <div className="p-4 border -b border-black" id="dropdown">
+          <div className="space-y-3">
+            <h1>Component: Collapse</h1>
+            <Collapse
+              label="Install Vs Code"
+              subLabel="Grading Format:  Scale (1-5)"
+            >
+              <div>This is Props</div>
+            </Collapse>
+            <Collapse label="2. Install Xampp">
+              <div>This is Props</div>
+            </Collapse>
+          </div>
+          <div className="mt-[5px]">
+            <h1>Props: </h1>
+            <p>label=(string)[""] ex. label="1. Install Django Framework</p>
+            <p>subLabel=(string)[""] ex. label="Grading Format: Scale (1-5)</p>
+            <p>children=React.ReactNode;</p>
           </div>
         </div>
       </div>
