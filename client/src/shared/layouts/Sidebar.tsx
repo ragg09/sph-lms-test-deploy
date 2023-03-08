@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
-import MenuLogo from '../icons/menu';
-import PreviousIcon from '../icons/previous';
+import MenuLogo from '@/src/shared/icons/MenuIcon';
+import PreviousIcon from '@/src/shared/icons/PreviousIcon';
 
 interface Props {
   children: React.ReactNode

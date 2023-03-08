@@ -1,4 +1,4 @@
-import LayoutLearning from '@/src/shared/layouts/layout-learning';
+import LayoutLearning from '@/src/shared/layouts/LayoutLearning';
 
 const DemoLayoutLearning: React.FC = () => {
   return <LayoutLearning> </LayoutLearning>;

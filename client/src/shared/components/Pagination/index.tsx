@@ -1,8 +1,8 @@
 import React from 'react';
-import PreviousIcon from '@/src/shared/icons/previous';
-import NextIcon from '@/src/shared/icons/next';
+import PreviousIcon from '@/src/shared/icons/PreviousIcon';
+import NextIcon from '@/src/shared/icons/NextIcon';
 
-interface PaginationProps {
+export interface PaginationProps {
   maxPages: number;
   totalPages: number;
   currentPage: number;

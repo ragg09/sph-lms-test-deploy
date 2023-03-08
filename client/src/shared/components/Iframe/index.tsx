@@ -1,6 +1,6 @@
 import React from 'react';
 
-interface IframeProps {
+export interface IframeProps {
   src: string;
   className: string;
   width?: string;

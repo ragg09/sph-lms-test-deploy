@@ -5,6 +5,7 @@ import Textfield from '@/src/shared/components/TextField';
 import Card from '@/src/shared/components/Card';
 import Pagination from '@/src/shared/components/Pagination';
 import Breadcrumbs from '@/src/shared/components/Breadcrumbs';
+import Dropdown from '@/src/shared/components/Dropdown';
 
 const DemoComponent: React.FunctionComponent = () => {
   // sets up the state of the page to track user interaction
@@ -152,6 +153,27 @@ const DemoComponent: React.FunctionComponent = () => {
               <br />
               onChangePage = function || ex. onChangePage = function that tracks
               the event of the page
+            </div>
+          </div>
+        </div>
+
+        <br />
+        <div className="p-4 border first-letter:-b border-black" id="dropdown">
+          <Dropdown
+            label="Select an option"
+            options={[
+              { text: 'Option 1', url: '/login' },
+              { text: 'Option 2', url: '/register' }
+            ]}
+          />
+          <div className="mt-[5px]">
+            <h1>Props: Dropdown</h1>
+            <div className="bg-gray-300 p-[5px]">
+              options: string[] || ex. options=
+              {['option 1, option 2, option 3']} <br />
+              label: string || ex. label=&apos;Dropdown menu&apos;
+              <br />
+              Note: Option name is the same for anchor reference
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from '@/src/shared/layouts/container';
+import Container from '@/src/shared/layouts/Container';
 
 const ContainerDemo: React.FC = () => {
   return (

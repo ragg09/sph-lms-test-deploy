@@ -2,12 +2,12 @@
 import { useRouter } from 'next/router';
 import React, { Fragment } from 'react';
 
-interface pathObject {
+export interface pathObject {
   text: string;
   url: string;
 }
 
-interface BreadcrumbsProps {
+export interface BreadcrumbsProps {
   paths: pathObject[];
 }
 
