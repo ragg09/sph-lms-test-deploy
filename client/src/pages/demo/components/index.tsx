@@ -7,6 +7,7 @@ import Pagination from '@/src/shared/components/Pagination';
 import Breadcrumbs from '@/src/shared/components/Breadcrumbs';
 import Dropdown from '@/src/shared/components/Dropdown';
 import InputField from '@/src/shared/components/InputField';
+import Searchbar from '@/src/shared/components/SearchBar/SearchBar';
 
 const DemoComponent: React.FunctionComponent = () => {
   // sets up the state of the page to track user interaction
@@ -159,7 +160,18 @@ const DemoComponent: React.FunctionComponent = () => {
             </div>
           </div>
         </div>
-
+        <br />
+        <div className="p-4 border -b border-black space-y-4" id="searchbar">
+          <Searchbar onSearchEvent="string" />
+          <div className="mt-1.5">
+            <h1 className="font-semibold">Props: Searchbar</h1>
+            <div className="bg-gray-300 p-1.5">
+              <p>onSearchEvent = (string)[""] ex. onSearchEvent="string" </p>
+              <p>height = (string)[auto] ex. height="50px"</p>
+              <p>width = (string)[auto] ex. width="100px"</p>
+            </div>
+          </div>
+        </div>
         <br />
         <div className="p-4 border first-letter:-b border-black" id="dropdown">
           <Dropdown
