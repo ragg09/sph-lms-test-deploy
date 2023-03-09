@@ -57,7 +57,7 @@ const Dropdown: React.FC<DropdownProps> = ({
             {options.map((option) => (
               <a
                 key={option.url}
-                href={`#${option.url}`}
+                href={`${option.url}`}
                 className={`${
                   selectedOption === option.url
                     ? 'bg-gray-100 text-gray-900'

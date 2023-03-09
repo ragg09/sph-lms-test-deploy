@@ -10,6 +10,7 @@ import InputField from '@/src/shared/components/InputField';
 import Searchbar from '@/src/shared/components/SearchBar/SearchBar';
 import Collapse from '@/src/shared/components/Collapse/Collapse';
 import Checkbox from '@/src/shared/components/Checkbox';
+import Select from '@/src/shared/components/Select';
 
 const DemoComponent: React.FunctionComponent = () => {
   // sets up the state of the page to track user interaction
@@ -259,25 +260,53 @@ const DemoComponent: React.FunctionComponent = () => {
             <p>children=React.ReactNode;</p>
           </div>
         </div>
-      <br />
-      <div className="p-4 border" id="checkbox">
+        <br />
+        <div className="p-4 border" id="checkbox">
           <Checkbox
             label="Description"
             options={['Pif', 'Yell', 'Miko', 'Kent', 'Francis']}
-            alignment=''
-            classname='h-5 w-5 text-sm'
+            alignment=""
+            classname="h-5 w-5 text-sm"
             onClickEvent={() => {}}
           ></Checkbox>
 
           <div className="mt-[5px]">
             <h1>Props: Checkbox</h1>
-
             <div className="bg-gray-300 p-[5px]">
               <p> label = (string) ex. label="Description"</p>
-              <p> options = (string array)ex. options="['Pif','Yell','Miko','Kent']"</p>
-              <p> alignment = (string) ex. alignment='vertical'||alignment='horizontal' </p>
+              <p>
+                options = (string array)ex.
+                options="['Pif','Yell','Miko','Kent']"
+              </p>
+              <p>
+                alignment = (string) ex.
+                alignment='vertical'||alignment='horizontal'
+              </p>
               <p> classname = (number)ex. text-xl h-4 w-4</p>
-              <p> onClickEvent = (Function)ex. onClickEvent=(value)=`{'>'}` handleOnClick"</p>
+              <p>
+                onClickEvent = (Function)ex. onClickEvent=(value)=&gt;
+                handleOnClick()
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <br />
+        <div className="p-4 border first-line:-b border-black" id="select">
+          <Select
+            label="- Select an option -"
+            options={[
+              'This is option 1',
+              'This is option 2',
+              'This is option 3'
+            ]}
+          />
+          <div className="mt-[5px]">
+            <h1>Props: Select</h1>
+            <div className="bg-gray-300 p-[5px]">
+              label: string || ex. label="- Please select an answer -" <br />
+              options: string[] || ex. options = &#123;['Option 1', 'Option
+              2']&#125;
             </div>
           </div>
         </div>
