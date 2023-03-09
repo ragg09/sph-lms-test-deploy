@@ -1,6 +1,9 @@
 {
   "prettier.singleQuote": true,
   "trailingComma": "none",
+  "python.linting.pylintArgs": ["--disable=C0111"],
+  "python.pythonPath": "venv/bin/python",
+  "python.linting.pylintPath": "venv/bin/pylint",
   "[php]": {
     "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
   }
