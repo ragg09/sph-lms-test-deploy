@@ -17,6 +17,11 @@ const DemoComponent: React.FunctionComponent = () => {
     setCurrentPage(page);
   };
 
+  // for searchbard
+  const searchHandler = (searchTerm: string): void => {
+    console.log(`Searching ${searchTerm}`);
+  };
+
   return (
     <Fragment>
       <div className="container mx-auto">
@@ -163,7 +168,7 @@ const DemoComponent: React.FunctionComponent = () => {
         </div>
         <br />
         <div className="p-4 border -b border-black space-y-4" id="searchbar">
-          <Searchbar onSearchEvent="string" />
+          <Searchbar onSearchEvent={searchHandler} />
           <div className="mt-1.5">
             <h1 className="font-semibold">Props: Searchbar</h1>
             <div className="bg-gray-300 p-1.5">

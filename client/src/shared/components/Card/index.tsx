@@ -1,9 +1,9 @@
 import React from 'react';
 
 export interface CardProps {
-  height: string
-  title: string
-  children: React.ReactNode
+  height: string;
+  title: string;
+  children: React.ReactNode;
 }
 
 const Card: React.FC<CardProps> = ({ height, title, children }: CardProps) => {
@@ -24,7 +24,7 @@ const Card: React.FC<CardProps> = ({ height, title, children }: CardProps) => {
 Card.defaultProps = {
   height: '',
   title: '',
-  children: React.ReactNode
+  children: ''
 };
 
 export default Card;

@@ -1,9 +1,9 @@
 import React from 'react';
 
 interface Props {
-  height: number
-  width: number
-  className: string
+  height: number;
+  width: number;
+  className?: string;
 }
 
 const PreviousIcon: React.FC<Props> = ({ height, width, className }: Props) => {

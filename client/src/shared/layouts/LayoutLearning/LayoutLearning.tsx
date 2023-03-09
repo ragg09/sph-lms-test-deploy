@@ -1,10 +1,10 @@
 import React from 'react';
 import NextIcon from '@/src/shared/icons/NextIcon';
 import PreviousIcon from '@/src/shared/icons/PreviousIcon';
-import Sidebar from '@/src/shared/layouts/Sidebar';
+import Sidebar from '@/src/shared/layouts/LayoutLearning/Sidebar';
 
 interface Props {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const LayoutLearning: React.FC<Props> = ({ children }: Props) => {
@@ -16,7 +16,11 @@ const LayoutLearning: React.FC<Props> = ({ children }: Props) => {
           <div className="b-4">
             <div className="justify-center flex flex-row pt-8 ">
               <div className="p-2">
-                <PreviousIcon height={20} width={20} className={''}></PreviousIcon>
+                <PreviousIcon
+                  height={20}
+                  width={20}
+                  className={''}
+                ></PreviousIcon>
               </div>
               <div className="  text-blue-600 text-2xl font-bold">
                 Assessment 1

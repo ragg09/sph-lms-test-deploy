@@ -1,4 +1,4 @@
-import Sidebar from '@/src/shared/layouts/Sidebar/Sidebar';
+import Sidebar from '@/src/shared/layouts/SideBar';
 
 const DemoSideBar: React.FC = () => {
   return <Sidebar />;

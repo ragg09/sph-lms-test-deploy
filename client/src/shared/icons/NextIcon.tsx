@@ -1,7 +1,7 @@
 interface Props {
-  height: number
-  width: number
-  className: string
+  height: number;
+  width: number;
+  className?: string;
 }
 
 const NextIcon: React.FC<Props> = ({ height, width, className }: Props) => {
