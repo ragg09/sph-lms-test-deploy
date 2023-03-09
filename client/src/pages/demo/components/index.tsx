@@ -11,6 +11,7 @@ import Searchbar from '@/src/shared/components/SearchBar/SearchBar';
 import Collapse from '@/src/shared/components/Collapse/Collapse';
 import Checkbox from '@/src/shared/components/Checkbox';
 import Select from '@/src/shared/components/Select';
+import Button from '@/src/shared/components/Button';
 
 const DemoComponent: React.FunctionComponent = () => {
   // sets up the state of the page to track user interaction
@@ -38,6 +39,8 @@ const DemoComponent: React.FunctionComponent = () => {
           <a href="#breadcrumbs">Breadcrumbs</a>
           <br />
           <a href="#inputField">Input Field</a>
+          <br />
+          <a href="#buttonComponent">Event Button</a>
         </div>
         <br />
         <hr className="w-3/4 mx-auto" />
@@ -236,6 +239,49 @@ const DemoComponent: React.FunctionComponent = () => {
               <p> id: (string)[""] ex. label="Testing"</p>
               <p> width: "100%" | "50px",</p>
               <p>height: "100%" | "50px"</p>
+            </div>
+          </div>
+
+          <br />
+          <hr className="w-3/4 mx-auto" />
+          <br />
+
+          <div className="p-4 border" id="buttonComponent">
+            <h1>Component: Button (Event Button)</h1>
+            <br />
+            <Button text="Plain" />
+            <Button
+              text="Submit"
+              color="blue"
+              width="200px"
+              onClick={() => {
+                console.log('I clicked Submit button');
+              }}
+            />
+            <Button text="Okay" color="green" width="50%" />
+            <Button text="Delete" color="red" width="75%" />
+            <Button
+              text="Edit"
+              color="yellow"
+              width="100%"
+              onClick={() => {
+                alert('Clicked yellow button, this is a function');
+              }}
+            />
+
+            <br />
+
+            <div className="mt-[5px]">
+              <h1>Props: Event Button</h1>
+
+              <div className="bg-gray-300 p-[5px]">
+                <p>text: (string)[""] ex. text="Submit"</p>
+                <p>
+                  color: (string)[""] ex. color="blue | green | red | yellow"
+                </p>
+                <p>width: (string)[""] ex. width="200px | 50%" width</p>
+                <p>onClick: (function) </p>
+              </div>
             </div>
           </div>
         </div>
