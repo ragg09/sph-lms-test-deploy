@@ -14,6 +14,15 @@ mysql_dat
 .vscode/
 .idea/
 
-#venv
-/sph-lms-venv
+# env
+.env
+.venv/*
+!.venv/.keep
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
+tmp/
+mysql_data/

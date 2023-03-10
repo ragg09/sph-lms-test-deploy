@@ -1,0 +1,54 @@
+version: "3.8"
+
+networks:
+  lms:
+services:
+  db:
+    image: mysql:8.0
+    container_name: lms-mysql
+    user: mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    restart: "always"
+    env_file:
+      ./api/.env
+    volumes:
+      - ./api/my.cnf:/etc/mysql/conf.d/my.cnf
+      - mysql-data:/var/lib/mysql
+    ports:
+      - "3309:3306"
+    networks:
+      - lms
+  client:
+    container_name: lms-nextjs
+    build:
+      context: ./client
+      target: builder
+    volumes:
+      - ./client:/client/app
+      - /client/app/node_modules
+    ports:
+      - "3000:3000"
+    command: "yarn dev"
+    environment:
+      NODE_ENV: development
+  server:
+    container_name: lms-django
+    build:
+      context: ./api
+    entrypoint: ["bash", "./wait.sh"]
+    command: "pipenv run server"
+    volumes:
+      - ./api:/api/app
+      - ./api/tmp/lms/mysqld:/run/mysqld
+    env_file: ./api/.env
+    environment:
+      DEBUG: "true"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - lms
+volumes:
+  mysql-data:

@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+djangt-environ = "*"
+djangorestframework = "*"
+django-filter = "*"
+markdown = "*"
+mysqlclient = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.8"
+
+[scripts]
+server = "python manage.py runserver 0.0.0.0:8000"
+migrate = "python manage.py migrate"
+createsuperuser = "python manage.py createsuperuser"
