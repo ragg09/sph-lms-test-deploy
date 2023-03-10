@@ -13,6 +13,7 @@ import Checkbox from '@/src/shared/components/Checkbox';
 import Select from '@/src/shared/components/Select';
 import Button from '@/src/shared/components/Button';
 import Radiobutton from '@/src/shared/components/Radiobutton';
+import Table from '@/src/shared/components/Table';
 
 const DemoComponent: React.FunctionComponent = () => {
   // sets up the state of the page to track user interaction
@@ -25,6 +26,18 @@ const DemoComponent: React.FunctionComponent = () => {
   const searchHandler = (searchTerm: string): void => {
     console.log(`Searching ${searchTerm}`);
   };
+
+  // for table component demo
+  interface tableData {
+    id: number;
+    name: string;
+    age: number;
+  }
+  const tableList: tableData[] = [
+    { id: 1, name: 'Name1', age: 21 },
+    { id: 2, name: 'Name2', age: 21 },
+    { id: 3, name: 'Name3', age: 21 }
+  ];
 
   return (
     <Fragment>
@@ -42,6 +55,8 @@ const DemoComponent: React.FunctionComponent = () => {
           <a href="#inputField">Input Field</a>
           <br />
           <a href="#buttonComponent">Event Button</a>
+          <br />
+          <a href="#tableComponent">Table</a>
         </div>
         <br />
         <hr className="w-3/4 mx-auto" />
@@ -358,12 +373,12 @@ const DemoComponent: React.FunctionComponent = () => {
           </div>
         </div>
         <br />
-      <div className="p-4 border" id="radiobutton">
+        <div className="p-4 border" id="radiobutton">
           <Radiobutton
             label="Description"
             options={['Pif', 'Yell', 'Miko', 'Kent', 'Francis']}
-            alignment=''
-            classname='h-5 w-5 text-sm'
+            alignment=""
+            classname="h-5 w-5 text-sm"
             onClickEvent={() => {}}
           ></Radiobutton>
 
@@ -372,10 +387,55 @@ const DemoComponent: React.FunctionComponent = () => {
 
             <div className="bg-gray-300 p-[5px]">
               <p> label = (string) ex. label="Description"</p>
-              <p> options = (string array)ex. options="['Pif','Yell','Miko','Kent']"</p>
-              <p> alignment = (string) ex. alignment='vertical'||alignment='horizontal' </p>
+              <p>
+                {' '}
+                options = (string array)ex.
+                options="['Pif','Yell','Miko','Kent']"
+              </p>
+              <p>
+                {' '}
+                alignment = (string) ex.
+                alignment='vertical'||alignment='horizontal'{' '}
+              </p>
               <p> classname = (number)ex. text-xl h-4 w-4</p>
-              <p> onClickEvent = (Function)ex. onClickEvent=(value)=`{'>'}` handleOnClick"</p>
+              <p>
+                {' '}
+                onClickEvent = (Function)ex. onClickEvent=(value)=`{'>'}`
+                handleOnClick"
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <br />
+        <hr className="w-3/4 mx-auto" />
+        <br />
+
+        <div className="p-4 border" id="tableComponent">
+          <h1>Component: Table</h1>
+          <br />
+          <p>No Action Enabled</p>
+          <Table header={['id', 'name', 'age']} data={tableList} />
+
+          <p>Action Enabled</p>
+          <Table
+            header={['id', 'name', 'age']}
+            data={tableList}
+            action={true}
+          />
+
+          <br />
+
+          <div className="mt-[5px]">
+            <h1>Props: </h1>
+
+            <div className="bg-gray-300 p-[5px]">
+              <p>header = (array of string)</p>
+              <p>
+                data = (array of object) ex &#123; id: 1, name: "Name1", age: 21
+                &#125;
+              </p>
+              <p>action = (boolean) ex. true | false</p>
             </div>
           </div>
         </div>
