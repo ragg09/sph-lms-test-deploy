@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import ChevronDownIcon from '@/src/shared/icons/ChevronDownIcon';
+import { useOutsideClick } from '@/src/shared/hooks/useOutsideClick';
 
 export interface Option {
   text: string;
@@ -23,22 +24,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const handleDocumentClick = (event: MouseEvent): void => {
-      if (
-        dropdownRef.current != null &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('click', handleDocumentClick);
-
-    return () => {
-      document.removeEventListener('click', handleDocumentClick);
-    };
-  }, []);
+  useOutsideClick(dropdownRef, () => { setIsOpen(false); });
 
   const handleOptionSelectEvent = (option: string): void => {
     setSelectedOption(option);
