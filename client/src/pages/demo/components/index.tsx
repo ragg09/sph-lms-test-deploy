@@ -13,7 +13,7 @@ import Collapse from '@/src/shared/components/Collapse/Collapse';
 import Checkbox from '@/src/shared/components/Checkbox';
 import Select from '@/src/shared/components/Select';
 import Button from '@/src/shared/components/Button';
-import Radiobutton from '@/src/shared/components/Radiobutton';
+import RadioButton from '@/src/shared/components/RadioButton';
 import Table, { tableData } from '@/src/shared/components/Table';
 
 const DemoComponent: React.FunctionComponent = () => {
@@ -369,14 +369,14 @@ const DemoComponent: React.FunctionComponent = () => {
           </div>
         </div>
         <br />
-        <div className="p-4 border" id="radiobutton">
-          <Radiobutton
+      <div className="p-4 border" id="radiobutton">
+          <RadioButton
             label="Description"
             options={['Pif', 'Yell', 'Miko', 'Kent', 'Francis']}
-            alignment=""
-            classname="h-5 w-5 text-sm"
+            alignment=''
+            classname='h-5 w-5 text-sm'
             onClickEvent={() => {}}
-          ></Radiobutton>
+          ></RadioButton>
 
           <div className="mt-[5px]">
             <h1>Props: Radiobutton</h1>

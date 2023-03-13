@@ -1,24 +1,19 @@
-import React, { Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
+import type { FC } from 'react';
 
-interface Props {
+export interface Props {
   label?: string;
   options: string[];
   alignment?: string;
   classname?: string;
-  onClickEvent: () => unknown;
+  onClickEvent: (query: string) => void;
 }
 
-const Radiobutton: React.FC<Props> = ({
-  label,
-  options,
-  alignment,
-  classname,
-  onClickEvent
-}: Props) => {
-  const [chosenOption, setChosenOption] = React.useState('');
+const RadioButton: FC<Props> = ({ label, options, alignment, classname, onClickEvent }: Props) => {
+  const [selectedOption, setSelectedOption] = useState('');
   const handleOnClick = (value: any): void => {
-    setChosenOption(value);
-    console.log(chosenOption);
+    setSelectedOption(value);
+    console.log(selectedOption);
   };
   return (
     <Fragment>
@@ -38,9 +33,8 @@ const Radiobutton: React.FC<Props> = ({
               className={classname}
               type="radio"
               value={option}
-              checked={chosenOption.includes(option)}
-              onClick={() => {
-                // sample of onclickevent
+              checked={selectedOption.includes(option)}
+              onClick={() => { // sample of onclickevent
                 handleOnClick(`${option}`);
               }}
             ></input>
@@ -52,9 +46,9 @@ const Radiobutton: React.FC<Props> = ({
   );
 };
 
-Radiobutton.defaultProps = {
+RadioButton.defaultProps = {
   label: '',
   alignment: 'vertical',
   classname: ''
 };
-export default Radiobutton;
+export default RadioButton;
