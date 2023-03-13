@@ -23,9 +23,13 @@ const Select: React.FC<SelectProps> = ({ label, options }) => {
           handleOptionSelect(event.target.value);
         }}
       >
-        <option value="" disabled selected>{label}</option>
+        <option value="" disabled selected>
+          {label}
+        </option>
         {options.map((option) => (
-          <option key={option} value={option} className="py-2 px-4 my-1">{option}</option>
+          <option key={option} value={option} className="py-2 px-4 my-1">
+            {option}
+          </option>
         ))}
       </select>
     </div>

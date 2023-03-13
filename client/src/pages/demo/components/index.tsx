@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/consistent-type-imports */
 /* eslint-disable react/no-unescaped-entities */
 import React, { Fragment, useState } from 'react';
 import Iframe from '@/src/shared/components/Iframe';
@@ -13,7 +14,7 @@ import Checkbox from '@/src/shared/components/Checkbox';
 import Select from '@/src/shared/components/Select';
 import Button from '@/src/shared/components/Button';
 import Radiobutton from '@/src/shared/components/Radiobutton';
-import Table from '@/src/shared/components/Table';
+import Table, { tableData } from '@/src/shared/components/Table';
 
 const DemoComponent: React.FunctionComponent = () => {
   // sets up the state of the page to track user interaction
@@ -27,12 +28,7 @@ const DemoComponent: React.FunctionComponent = () => {
     console.log(`Searching ${searchTerm}`);
   };
 
-  // for table component demo
-  interface tableData {
-    id: number;
-    name: string;
-    age: number;
-  }
+  // for table
   const tableList: tableData[] = [
     { id: 1, name: 'Name1', age: 21 },
     { id: 2, name: 'Name2', age: 21 },
@@ -386,20 +382,17 @@ const DemoComponent: React.FunctionComponent = () => {
             <h1>Props: Radiobutton</h1>
 
             <div className="bg-gray-300 p-[5px]">
-              <p> label = (string) ex. label="Description"</p>
+              <p>label = (string) ex. label="Description"</p>
               <p>
-                {' '}
-                options = (string array)ex.
-                options="['Pif','Yell','Miko','Kent']"
+                options = (string array)
+                ex.options="['Pif','Yell','Miko','Kent']"
               </p>
               <p>
-                {' '}
                 alignment = (string) ex.
-                alignment='vertical'||alignment='horizontal'{' '}
+                alignment='vertical'||alignment='horizontal'
               </p>
               <p> classname = (number)ex. text-xl h-4 w-4</p>
               <p>
-                {' '}
                 onClickEvent = (Function)ex. onClickEvent=(value)=`{'>'}`
                 handleOnClick"
               </p>

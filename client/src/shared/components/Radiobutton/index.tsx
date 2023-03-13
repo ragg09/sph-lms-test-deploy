@@ -8,7 +8,13 @@ interface Props {
   onClickEvent: () => unknown;
 }
 
-const Radiobutton: React.FC<Props> = ({ label, options, alignment, classname, onClickEvent }: Props) => {
+const Radiobutton: React.FC<Props> = ({
+  label,
+  options,
+  alignment,
+  classname,
+  onClickEvent
+}: Props) => {
   const [chosenOption, setChosenOption] = React.useState('');
   const handleOnClick = (value: any): void => {
     setChosenOption(value);
@@ -17,7 +23,7 @@ const Radiobutton: React.FC<Props> = ({ label, options, alignment, classname, on
   return (
     <Fragment>
       {label !== null && (
-        <div className='pb-2'>
+        <div className="pb-2">
           <label className={classname}>{label}</label>
         </div>
       )}
@@ -33,7 +39,8 @@ const Radiobutton: React.FC<Props> = ({ label, options, alignment, classname, on
               type="radio"
               value={option}
               checked={chosenOption.includes(option)}
-              onClick={() => { // sample of onclickevent
+              onClick={() => {
+                // sample of onclickevent
                 handleOnClick(`${option}`);
               }}
             ></input>

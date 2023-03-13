@@ -22,7 +22,7 @@ const dropdownItems = [
 const NavbarPage: React.FC = () => {
   return (
     <div>
-      <Navbar navItems={navItems} dropdownItems={dropdownItems}/>
+      <Navbar navItems={navItems} dropdownItems={dropdownItems} />
     </div>
   );
 };

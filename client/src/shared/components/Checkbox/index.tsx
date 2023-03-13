@@ -8,7 +8,13 @@ interface Props {
   onClickEvent: () => unknown;
 }
 
-const Checkbox: React.FC<Props> = ({ label, options, alignment, classname, onClickEvent }: Props) => {
+const Checkbox: React.FC<Props> = ({
+  label,
+  options,
+  alignment,
+  classname,
+  onClickEvent
+}: Props) => {
   const [chosenOption, setChosenOption] = React.useState(['']);
   const handleOnClick = (value: any): void => {
     setChosenOption((chosenOption) => [...chosenOption, value]);
@@ -17,7 +23,7 @@ const Checkbox: React.FC<Props> = ({ label, options, alignment, classname, onCli
   return (
     <Fragment>
       {label !== null && (
-        <div className='pb-2'>
+        <div className="pb-2">
           <label className={classname}>{label}</label>
         </div>
       )}
@@ -31,7 +37,8 @@ const Checkbox: React.FC<Props> = ({ label, options, alignment, classname, onCli
             <input
               className={classname}
               type="checkbox"
-              onClick={() => { // sample of onclickevent
+              onClick={() => {
+                // sample of onclickevent
                 handleOnClick(`${option}`);
               }}
             ></input>

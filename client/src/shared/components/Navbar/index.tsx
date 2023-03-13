@@ -1,3 +1,4 @@
+/* eslint-disable multiline-ternary */
 import React from 'react';
 import Link from 'next/link';
 import Avatar from '@/src/shared/components/Avatar';
@@ -8,7 +9,7 @@ import SettingsIcon from '@/src/shared/icons/SettingsIcon';
 export interface NavItemProps {
   url: string;
   text: string;
-  dropdownItems: Array<{ text: string; url: string }>
+  dropdownItems: Array<{ text: string; url: string }>;
 }
 
 export interface NavbarProps {
@@ -32,7 +33,17 @@ const Navbar: React.FC<NavbarProps> = ({ navItems, dropdownItems }) => {
                 {navItems.map((navItem) => {
                   return (
                     <div key={navItem.url}>
-                      {navItem.dropdownItems.length > 0 ? <Dropdown options={navItem.dropdownItems} label={navItem.text} /> : <NavLink href={navItem.url} text={navItem.text}></NavLink>}
+                      {navItem.dropdownItems.length > 0 ? (
+                        <Dropdown
+                          options={navItem.dropdownItems}
+                          label={navItem.text}
+                        />
+                      ) : (
+                        <NavLink
+                          href={navItem.url}
+                          text={navItem.text}
+                        ></NavLink>
+                      )}
                     </div>
                   );
                 })}
@@ -41,7 +52,7 @@ const Navbar: React.FC<NavbarProps> = ({ navItems, dropdownItems }) => {
           </div>
           <div className="flex items-center">
             <Link href={'/settings'} className="text-gray-600">
-              <SettingsIcon width={20} height={20} className="mr-2"/>
+              <SettingsIcon width={20} height={20} className="mr-2" />
             </Link>
             <Avatar name="John Doe" />
             <Dropdown options={dropdownItems} label="John Doe" />

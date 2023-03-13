@@ -2,9 +2,15 @@
 import React from 'react';
 import Button from '../Button';
 
-interface TableProps<T> {
+export interface tableData {
+  id: number;
+  name: string;
+  age: number;
+}
+
+export interface TableProps<tableData> {
   header: string[];
-  data: T[];
+  data: tableData[];
   action?: boolean;
 }
 
@@ -13,8 +19,6 @@ const Table: React.FC<TableProps<any>> = ({
   data,
   action
 }: TableProps<any>) => {
-  console.log(data);
-
   return (
     <div className="relative overflow-x-auto">
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
