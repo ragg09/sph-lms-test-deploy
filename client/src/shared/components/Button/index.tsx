@@ -7,13 +7,15 @@ export interface ButtonProps {
   color?: string;
   width?: string;
   onClick?: () => void;
+  type?: 'button' | 'submit';
 }
 
 const Button: React.FunctionComponent<ButtonProps> = ({
   text,
   color,
   width,
-  onClick
+  onClick,
+  type
 }: ButtonProps) => {
   const propStyle = {
     backgroundColor: color,
@@ -26,6 +28,7 @@ const Button: React.FunctionComponent<ButtonProps> = ({
         className="m-2 text-white font-bold py-2 px-4 rounded border"
         style={propStyle}
         onClick={onClick}
+        type={type}
       >
         {text}
       </button>
@@ -36,7 +39,8 @@ const Button: React.FunctionComponent<ButtonProps> = ({
 Button.defaultProps = {
   color: '',
   width: 'auto',
-  onClick: () => {}
+  onClick: () => {},
+  type: 'button'
 };
 
 export default Button;
