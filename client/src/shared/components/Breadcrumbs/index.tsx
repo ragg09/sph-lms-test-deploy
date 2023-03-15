@@ -18,7 +18,7 @@ const Breadcrumbs: React.FunctionComponent<BreadcrumbsProps> = ({
 
   const activeClass = (currentURL: string): string => {
     return asPath !== currentURL
-      ? 'ml-1 text-sm font-medium text-blue-600 hover:text-blue-300 md:ml-2 dark:text-blue-300 dark:hover:text-white'
+      ? 'ml-1 text-sm font-medium text-blue-500 hover:underline md:ml-2'
       : 'ml-1 text-sm font-medium text-gray-600 hover:text-gray-300 pointer-events-none';
   };
 
