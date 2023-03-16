@@ -102,8 +102,8 @@ const DemoComponent: React.FunctionComponent = () => {
           <Textfield
             label="Description"
             placeholder="Enter a description"
-            width={50}
-            height={10}
+            width="500px"
+            height="100px"
             className="text-xl border border-black rounded-lg rows"
             resizable={true}
           ></Textfield>
@@ -114,8 +114,8 @@ const DemoComponent: React.FunctionComponent = () => {
             <div className="bg-gray-300 p-[5px]">
               <p> label = (string) ex. label="Description"</p>
               <p> placeholder = (string)ex. placeholder="Enter Description"</p>
-              <p> width = (number) ex. width=10 </p>
-              <p> height = (number)ex. height=10 </p>
+              <p> width = (string) ex. width="10px" | "10%" </p>
+              <p> height = (string)ex. height="10px" | "10%" </p>
               <p>
                 fontsize = (string)ex. fontsize="text-s" | fontsize="text-2xl"
               </p>
