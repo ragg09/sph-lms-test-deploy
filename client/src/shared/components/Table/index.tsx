@@ -10,7 +10,7 @@ export interface TableProps<> {
 const Table: React.FC<TableProps> = ({ header, children }: TableProps) => {
   return (
     <div className="overflow-auto flex justify-center">
-      <table className="text-left text-gray-500 dark:text-gray-400">
+      <table className="text-left text-gray-500 dark:text-gray-400 w-full">
         <thead>
           <tr>
             <th className="p-4 ">
