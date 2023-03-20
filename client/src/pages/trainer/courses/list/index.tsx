@@ -6,12 +6,12 @@ import GridIcon from '@/src/shared/icons/GridIcon';
 import ListIcon from '@/src/shared/icons/ListIcon';
 import ViewAs from '@/src/sections/courses/list/view-as';
 import RightSideContainer from '@/src/sections/courses/list/right-side-container';
+import { useSearchCourse } from '@/src/shared/hooks/useSearchCourse';
 
 const View = (): ReactNode => {
   const [selectedView, setSelectedView] = useState('grid');
   const [gridIconColor, setGridIconColor] = useState('stroke-blue-500');
   const [listIconColor, setListIconColor] = useState('');
-  const listOfCourses = Array(5).fill('Course Title');
 
   const handleView = (view: string): void => {
     setSelectedView(view);
@@ -24,17 +24,18 @@ const View = (): ReactNode => {
     }
   };
 
+  const {
+    listOfCourses,
+    handleOnSearchEvent
+  } = useSearchCourse();
+
   return (
     <Fragment>
       <div className="flex flex-row">
         <div className="bg-white top-0 bottom-0 w-3/5 left-20 ml-28 pr-10">
           <div className="text-xl pl-5 pt-20 text-blue-500">Courses</div>
           <div className="pl-5 pt-10">
-            <SearchBar
-              height="50px"
-              width="100px"
-              onSearchEvent={() => {}}
-            ></SearchBar>
+            <SearchBar onSearchEvent={handleOnSearchEvent} />
             <div className="pt-5 flex flex-row justify-between">
               <div className="">
                 <Dropdown
@@ -74,10 +75,14 @@ const View = (): ReactNode => {
               </div>
             </div>
             <div className="z-10 pt-4 h-96">
-              <ViewAs
-                typeOfView={selectedView}
-                listOfCourses={listOfCourses}
-              ></ViewAs>
+              { listOfCourses.length > 0
+                ? (<ViewAs
+                    typeOfView={selectedView}
+                    listOfCourses={listOfCourses}
+                  ></ViewAs>
+                  )
+                : (<div className="text-center text-2xl pt-20">No Courses Found</div>)
+              }
             </div>
           </div>
         </div>
