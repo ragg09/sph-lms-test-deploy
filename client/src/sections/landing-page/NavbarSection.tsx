@@ -9,7 +9,7 @@ export interface NavItemProps {
   navItems: string[];
 }
 
-const Navbar: FC<NavItemProps> = ({ navItems }) => {
+const NavbarSection: FC<NavItemProps> = ({ navItems }) => {
   return (
     <nav className="bg-white h-20 sticky top-0">
       <div className="max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -58,4 +58,4 @@ const Navbar: FC<NavItemProps> = ({ navItems }) => {
   );
 };
 
-export default Navbar;
+export default NavbarSection;

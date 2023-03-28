@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import type { FC } from 'react';
 
-const Hero: FC = () => {
+const HeroSection: FC = () => {
   return (
     <>
       <div className="flex flex-wrap container p-8 mx-auto xl:px-0">
@@ -43,4 +43,4 @@ const Hero: FC = () => {
     </>
   );
 };
-export default Hero;
+export default HeroSection;

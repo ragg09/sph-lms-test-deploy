@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import Head from 'next/head';
-import Hero from '../sections/landingPage/hero';
-import Benefits from '../sections/landingPage/benefits';
-import Navbar from '../sections/landingPage/navbar';
-import Testimonials from '../sections/landingPage/testimonials';
+import NavbarSection from '../sections/landing-page/NavbarSection';
+import HeroSection from '../sections/landing-page/HeroSection';
+import BenefitSection from '../sections/landing-page/BenefitSection';
+import TestimonialSection from '../sections/landing-page/TestimonialSection';
 
 const LandingPage: React.FunctionComponent = () => {
   return (
@@ -14,16 +14,18 @@ const LandingPage: React.FunctionComponent = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="sticky top-0 overflow-hidden">
-        <Navbar navItems={['About', 'Benefits', 'Testimonies']}></Navbar>
+        <NavbarSection
+          navItems={['About', 'Benefits', 'Testimonies']}
+        ></NavbarSection>
       </div>
       <div className="h-screen w-auto pl-40 pr-10">
-        <Hero></Hero>
+        <HeroSection></HeroSection>
       </div>
       <div className="h-screen w-auto pl-40 pr-20">
-        <Benefits></Benefits>
+        <BenefitSection></BenefitSection>
       </div>
       <div className="h-screen w-auto pl-20 pr-20">
-        <Testimonials></Testimonials>
+        <TestimonialSection></TestimonialSection>
       </div>
     </Fragment>
   );

@@ -2,9 +2,9 @@ import React from 'react';
 import Image from 'next/image';
 import type { FC } from 'react';
 
-const Benefits: FC = () => {
+const BenefitSection: FC = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col ">
       <div className="flex justify-center text-6xl font-bold pt-10 pb-20 text-red-500">
         Why should you use this Website?
       </div>
@@ -135,4 +135,4 @@ const Benefits: FC = () => {
   );
 };
 
-export default Benefits;
+export default BenefitSection;
