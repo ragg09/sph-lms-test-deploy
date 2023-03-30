@@ -67,7 +67,11 @@ const Navbar: React.FC<NavbarProps> = ({ navItems, dropdownItems }) => {
                 <SettingsIcon width={20} height={20} className="mr-2" />
               </Link>
               <Avatar name={getUserFullName()} />
-              <Dropdown options={dropdownItems} label={getUserFullName()} />
+              <Dropdown
+                options={dropdownItems}
+                label={getUserFullName()}
+                showLogoutButton={true}
+              />
             </div>
               )
             : (
