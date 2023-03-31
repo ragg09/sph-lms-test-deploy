@@ -14,12 +14,11 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import filters
 from rest_framework.decorators import api_view
 from rest_framework.authtoken.models import Token
-from django.contrib.auth.backends import BaseBackend
-from django.contrib.auth.backends import get_user_model
+from django.contrib.auth.backends import BaseBackend, get_user_model
+from django.contrib.auth.hashers import make_password
 from rest_framework.authtoken import views as auth_views
 from rest_framework.compat import coreapi, coreschema
 from rest_framework.schemas import ManualSchema
-
 
 # Create your views here.
 
@@ -30,11 +29,12 @@ class AuthViaEmail(BaseBackend):
         except get_user_model().DoesNotExist:
             return None
     
-    def authenticate(self, request, email=None, password=None):
+    def authenticate(self, request, email=None, password=None, **kwargs):
         UserModel = get_user_model()
         try:
             user = UserModel.objects.get(email=email)
             if user.check_password(password):
+                
                 return user
         except UserModel.DoesNotExist:
             return None
@@ -142,3 +142,38 @@ class AuthToken(auth_views.ObtainAuthToken):
             ],
             encoding="application/json",
         )
+
+class UserList(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_url_kwarg_1 = 'company_id'
+    
+    def create(self, request, *args, **kwargs):
+        encypted_password = make_password(request.data['password'])
+        serializer = self.get_serializer(data=request.data, context={
+            'company_id': self.kwargs.get(self.lookup_url_kwarg_1),
+            'password': encypted_password,
+            'role': request.data['role']
+        })
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response({
+            'data': serializer.data,
+            'message': "Successfully created new user",
+        })
+        
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    lookup_url_kwarg_1 = 'company_id'
+    lookup_url_kwarg_2 = 'pk'
+    lookup_field = 'pk'
+     
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        serializer.destroy()
+        return Response({
+            'message': 'User deleted'
+        })
