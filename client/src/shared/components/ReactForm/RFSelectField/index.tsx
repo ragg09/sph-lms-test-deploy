@@ -1,15 +1,17 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable object-shorthand */
 /* eslint-disable react/display-name */
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import React from 'react';
-import { type ForwardedRef, forwardRef, type InputHTMLAttributes } from 'react';
+import {
+  type ForwardedRef,
+  forwardRef,
+  type SelectHTMLAttributes
+} from 'react';
 import { type UseFormRegisterReturn } from 'react-hook-form';
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
+interface Props extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: string;
-  placeholder?: string;
-  type?: string;
+  options: Array<{ label: string; value: string }>;
   register?: UseFormRegisterReturn;
   error?: string | boolean;
   width?: string;
@@ -17,27 +19,22 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
 }
 
-const RFInputField = forwardRef(
-  (props: Props, ref: ForwardedRef<HTMLInputElement>) => {
+const RFSelectField = forwardRef(
+  (props: Props, ref: ForwardedRef<HTMLSelectElement>) => {
     const {
       label,
-      placeholder,
+      options,
       register,
       error,
       width,
       height,
       className,
-      type,
       ...rest
     } = props;
 
     const propStyle = {
       width: width,
       height: height
-    };
-
-    const errorAlert = (error: string | boolean): string => {
-      return error ? ' border-red-500' : ' border-gray-300';
     };
 
     return (
@@ -47,19 +44,22 @@ const RFInputField = forwardRef(
             {label}
           </label>
         )}
-        <input
+        <select
           {...register}
           {...rest}
-          type={type}
           ref={ref}
-          className={`appearance-none border rounded text-sm py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
-            error !== undefined && errorAlert(error)
-          } ${className}`}
+          className={`appearance-none border border-gray-300 rounded text-sm py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${className}`}
           style={propStyle}
-        />
+        >
+          {options.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
         {error !== undefined && (
           <div className="text-red-700 rounded relative" role="alert">
-            <span className="block sm:inline text-sm">{error}</span>
+            <span className="block sm:inline">{error}</span>
           </div>
         )}
       </div>
@@ -67,14 +67,13 @@ const RFInputField = forwardRef(
   }
 );
 
-RFInputField.defaultProps = {
+RFSelectField.defaultProps = {
   label: '',
-  placeholder: '',
-  type: 'text',
+  options: [],
   id: '',
   width: '100%',
   height: '',
   className: ''
 };
 
-export default RFInputField;
+export default RFSelectField;
