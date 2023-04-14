@@ -1,11 +1,12 @@
 from app_sph_lms.api.serializers import (
+    ClassSerializer,
     CourseCategorySerializer,
     CourseSerializer,
     UserSerializer,
     AuthTokenSerializer,
     CompanySerializer,
 )
-from app_sph_lms.models import Course, CourseCategory, User, Company
+from app_sph_lms.models import Class, Course, CourseCategory, User, Company
 from django.db.models import Q
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics
@@ -212,3 +213,13 @@ class CompanyUsersViewSet(generics.CreateAPIView, generics.RetrieveAPIView):
                 "message": "Successfully created new user",
             }
         )
+        
+class ClassList(generics.ListCreateAPIView):
+    serializer_class = ClassSerializer
+    
+    def get_queryset(self):
+        company_id = self.kwargs.get('company_id')
+        queryset = Class.objects.filter(company_id=company_id)
+        if not queryset.exists():
+            queryset = Class.objects.none()
+        return queryset
