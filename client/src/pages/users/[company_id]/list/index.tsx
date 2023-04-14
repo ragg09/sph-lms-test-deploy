@@ -24,16 +24,9 @@ const ListOfUser: FC = () => {
     numberOfUsers,
     limiter,
     searchHandler,
-    listOfUser
+    listOfUser,
+    tableHeader
   } = useShowUserList();
-  const tableHeader = [
-    'First Name',
-    'Last Name',
-    'Username',
-    'Email',
-    'Role',
-    'Quick Actions'
-  ];
 
   return (
     <Fragment>
