@@ -17,7 +17,6 @@ const ListOfUser: FC = () => {
     showPerPageOption,
     handleChangePageEvent,
     handleShowPerPage,
-    showPerPage,
     currentPage,
     lastIndex,
     startingIndex,
@@ -44,9 +43,9 @@ const ListOfUser: FC = () => {
           </div>
           <div className="h-96">
             <Table header={tableHeader} checkbox={false}>
-              {Array.isArray(showPerPage) && showPerPage.length > 0
+              {Array.isArray(listOfUser) && listOfUser.length > 0
                 ? (
-                    showPerPage.map((col: any) => (
+                    listOfUser.map((col: any) => (
                   <tr
                     className="border-b whitespace-nowrap text-sm text-black1 font-sans h-5"
                     key={col.id}
@@ -74,7 +73,7 @@ const ListOfUser: FC = () => {
                 <tr>
                   <td colSpan={5} className="text-center pt-10 font-bold">
                     <div className="flex justify-center w-full">
-                      User does not exist
+                      Loading . . .
                     </div>
                   </td>
                 </tr>
@@ -89,18 +88,15 @@ const ListOfUser: FC = () => {
                 options={showPerPageOption}
               />
               <div className="flex items-center">
-                Showing {startingIndex} to {lastIndex} of {listOfUser.length}{' '}
-                entries
+                Showing {startingIndex} to {lastIndex} of {numberOfUsers}{' '}
+                entries |
               </div>
             </div>
             <div className="flex justify-center pb-20">
               <div className="flex flex-row">
                 <Pagination
                   maxPages={5}
-                  totalPages={Math.floor(
-                    numberOfUsers / limiter +
-                      (numberOfUsers % limiter === 0 ? 0 : 1)
-                  )}
+                  totalPages={Math.ceil(numberOfUsers / limiter)}
                   currentPage={currentPage}
                   onChangePage={handleChangePageEvent}
                 />

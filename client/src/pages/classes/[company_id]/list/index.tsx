@@ -12,22 +12,18 @@ import type { FC } from 'react';
 
 const ClassList: FC = () => {
   const {
+    listOfClass,
     showPerPageOption,
     handleChangePageEvent,
     handleShowPerPage,
-    showPerPage,
     currentPage,
     lastIndex,
     startingIndex,
     numberOfUsers,
-    limiter
+    limiter,
+    tableHeader
   } = useShowClassList();
-  const tableHeader = [
-    'Class Name',
-    'Class Trainer',
-    'Number of Trainees',
-    'Number of Courses'
-  ];
+
   const searchHandler = (searchTerm: string): void => {
     console.log(`Searching ${searchTerm}`);
   };
@@ -76,21 +72,21 @@ const ClassList: FC = () => {
                 </tr>
                   )
                 : (
-                    showPerPage.map((col: any) => (
+                    listOfClass.map((col: any) => (
                   <tr
                     className="border-b whitespace-nowrap text-sm text-black1 font-sans h-5"
                     key={col.id}
                   >
                     <td className="px-6 py-4 text-lightBlue underline">
-                      {col.class_name}
+                      {col.name}
                     </td>
                     <td className="px-6 py-4 text-lightBlue underline">
-                      {col.class_trainer}
+                      {col.trainer[0].details.full_name}
                     </td>
                     <td className="px-6 py-4 text-lightBlue underline">
-                      {col.number_of_trainees}
+                      {col.total_trainees}
                     </td>
-                    <td className="px-6 py-4">{col.number_of_courses}</td>
+                    <td className="px-6 py-4">{col.trainer[0].course_count}</td>
                   </tr>
                     ))
                   )}
