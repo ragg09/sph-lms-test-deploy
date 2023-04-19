@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/array-type */
 export interface CourseDetails {
   id: string;
   title: string;
@@ -87,4 +88,15 @@ export interface UserUpdateDeleteFormData {
   last_name: string;
   password: string;
   confirm_password: string;
+}
+
+export interface CourseFormInput {
+  name: string;
+  description: string;
+  category: { value: number; label: string }[];
+}
+
+export interface MultiSelectOptionData {
+  value: number;
+  label: string;
 }
