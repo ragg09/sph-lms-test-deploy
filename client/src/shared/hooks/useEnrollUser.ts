@@ -1,15 +1,16 @@
-/* eslint-disable @typescript-eslint/no-confusing-void-expression */
-/* eslint-disable object-shorthand */
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
 import { useEffect, useRef, useState } from 'react';
+import { type AxiosResponse } from 'axios';
 import API from '@/src/apis';
 import { useRouter } from 'next/router';
 import { is404, isRequestOk, type User } from '../utils';
 
+interface Course {
+  name: string;
+  company: string;
+}
+
 const useEnrollUser = (): any => {
   const router = useRouter();
-
-  const [showPerPage, setShowPerPage] = useState<User[]>([]);
 
   const fetchedUsersRef = useRef<User[]>([]);
 
@@ -17,17 +18,81 @@ const useEnrollUser = (): any => {
 
   const [pageNotFound, setPageNotFound] = useState(false);
 
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const [limiter, setLimiter] = useState(10);
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const [numberOfUsers, setNumberOfUsers] = useState(1000);
+
+  const [listOfUser, setListOfUser] = useState<User[]>([]);
+
+  const handleChangePageEvent = (page: number): void => {
+    void router.push({
+      pathname: router.pathname,
+      query: {
+        ...router.query,
+        page
+      }
+    });
+    setCurrentPage(page);
+  };
+
+  const handleShowPerPage = (e: any): void => {
+    const thisLimiter = e.target.value;
+    setLimiter(thisLimiter);
+    void router.push({
+      pathname: router.pathname,
+      query: {
+        ...router.query,
+        page_size: thisLimiter
+      }
+    });
+  };
+
+  const searchHandler = (searchTerm: string): void => {
+    setSearchTerm(searchTerm);
+
+    void router.push({
+      pathname: router.pathname,
+      query: {
+        ...router.query,
+        search: searchTerm
+      }
+    });
+  };
+
   useEffect(() => {
+    const queryParams: any = {};
+
+    if (searchTerm !== '') {
+      queryParams.search = searchTerm;
+    }
+
+    if (limiter !== 0) {
+      queryParams.page_size = limiter;
+    }
+
+    if (currentPage !== 0) {
+      queryParams.page = currentPage;
+    }
+
+    setListOfUser([]);
+
     const fetchCourse = async (): Promise<void> => {
       if (router.query.id !== undefined) {
         try {
-          const result = await API.get(`course/${router.query.id}`);
+          const result: AxiosResponse<Course> = await API.get(`course/${router.query.id.toString()}`);
           setCourseTitle(result.data.name);
           if (isRequestOk(result)) {
-            const userResult = await API.get(`user/${result.data.company}`);
+            const userResult = await API.get(`user/${result.data.company}`, {
+              params: queryParams
+            });
             if (isRequestOk(userResult)) {
               fetchedUsersRef.current = userResult.data.user;
-              setShowPerPage(fetchedUsersRef.current.slice(0, 10));
+              setNumberOfUsers(userResult.data.pagination.count);
+              setListOfUser(userResult.data.user);
             }
           }
         } catch (error: any) {
@@ -39,12 +104,7 @@ const useEnrollUser = (): any => {
       }
     };
     void fetchCourse();
-  }, [router.query.id]);
-
-  const handleShowPerPage = (e: any): void => {
-    const limiter = e.target.value;
-    setShowPerPage(fetchedUsersRef.current.slice(0, limiter));
-  };
+  }, [router.query.id, searchTerm, currentPage, limiter]);
 
   const showPerPageOption = [
     { id: 10, text: '10' },
@@ -60,7 +120,7 @@ const useEnrollUser = (): any => {
     },
     {
       text: courseTitle,
-      url: `/trainer/course/detail/${router.query.id}`
+      url: `/trainer/course/detail/${router.query.id?.toString() as string}`
     },
     {
       text: 'Enroll User',
@@ -71,10 +131,15 @@ const useEnrollUser = (): any => {
   return {
     paths,
     courseTitle,
-    showPerPage,
     handleShowPerPage,
     showPerPageOption,
-    pageNotFound
+    pageNotFound,
+    searchHandler,
+    numberOfUsers,
+    limiter,
+    currentPage,
+    handleChangePageEvent,
+    listOfUser
   };
 };
 

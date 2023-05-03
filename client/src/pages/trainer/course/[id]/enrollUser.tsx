@@ -9,15 +9,22 @@ import { dropdownItems, navItems } from '@/src/shared/utils/navBarList';
 import Breadcrumbs from '@/src/shared/components/Breadcrumbs';
 import NotFoundPage from '@/src/pages/404';
 import useEnrollUser from '@/src/shared/hooks/useEnrollUser';
+import SearchBar from '@/src/shared/components/SearchBar/SearchBar';
+import Pagination from '@/src/shared/components/Pagination';
 
 const EnrollUser: React.FC = () => {
   const {
     paths,
     courseTitle,
-    showPerPage,
     handleShowPerPage,
     showPerPageOption,
-    pageNotFound
+    pageNotFound,
+    searchHandler,
+    numberOfUsers,
+    limiter,
+    currentPage,
+    handleChangePageEvent,
+    listOfUser
   } = useEnrollUser();
 
   if (pageNotFound) {
@@ -36,12 +43,15 @@ const EnrollUser: React.FC = () => {
         <div>
           <h1 className='text-2xl text-blue-500 pb-10 pl-2'>Enroll Users into {courseTitle}</h1>
         </div>
+        <div className='pl-2 pb-5'>
+          <SearchBar onSearchEvent={searchHandler}/>
+        </div>
         <Table
           header={[{ text: 'First Name' }, { text: 'Last Name' }, { text: 'Email' }, { text: 'Creation Date' }, { text: 'Role' }]}
         >
-         {Array.isArray(showPerPage) && showPerPage.length > 0
+         {Array.isArray(listOfUser) && listOfUser.length > 0
            ? (
-               showPerPage.map((col: any) => (
+               listOfUser.map((col: any) => (
                   <tr
                     className="border-b whitespace-nowrap text-sm text-black1 font-sans h-5"
                     key={col.id}
@@ -86,6 +96,16 @@ const EnrollUser: React.FC = () => {
             options={showPerPageOption}
           />
         </div>
+        <div className="flex justify-center pb-20">
+              <div className="flex flex-row">
+                <Pagination
+                  maxPages={5}
+                  totalPages={Math.ceil(numberOfUsers / limiter)}
+                  currentPage={currentPage}
+                  onChangePage={handleChangePageEvent}
+                />
+              </div>
+            </div>
       </Container>
     </Fragment>
   );
