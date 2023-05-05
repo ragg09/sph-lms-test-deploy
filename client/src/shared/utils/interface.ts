@@ -100,3 +100,34 @@ export interface MultiSelectOptionData {
   value: number;
   label: string;
 }
+
+export interface IsActiveProps {
+  isActive: boolean;
+}
+
+export interface MaterialFormInput {
+  name: string;
+  link: FileList; // it can accept string, but can also accept file, update accordingly
+  type?: string;
+  description?: string;
+  directory?: number;
+  category?: number;
+  course?: number;
+}
+
+export interface DivCollapseProps {
+  label: string;
+  children: React.ReactNode;
+}
+
+export interface ModalProps {
+  children?: any;
+  isOpen: boolean;
+  className?: string;
+}
+
+export interface TabButtonProps {
+  text: string;
+  isActive: boolean;
+  onClick?: () => void;
+}
