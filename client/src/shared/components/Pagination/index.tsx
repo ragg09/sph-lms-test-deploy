@@ -1,6 +1,6 @@
 import React from 'react';
-import PreviousIcon from '@/src/shared/icons/PreviousIcon';
-import NextIcon from '@/src/shared/icons/NextIcon';
+import ArrowIcon from '../../icons/ArrowIcon';
+import DoubleArrowIcon from '../../icons/DoubleArrowIcon';
 
 export interface PaginationProps {
   maxPages: number;
@@ -21,10 +21,12 @@ const Pagination: React.FC<PaginationProps> = ({
     { length: endIndex - startIndex },
     (_, i) => startIndex + i + 1
   );
-  const prevPage = currentPage - 1;
-  const nextPage = currentPage + 1;
-  const isFirstPage = currentPage === 1;
-  const isLastPage = currentPage === totalPages;
+  const prevPage: number = currentPage - 1;
+  const nextPage: number = currentPage + 1;
+  const isFirstPage: boolean = currentPage === 1;
+  const firstPage: number = 1;
+  const isLastPage: boolean = currentPage === totalPages;
+  const lastPage: number = totalPages;
 
   const handlePageChange = (page: number): void => {
     if (onChangePage != null) {
@@ -32,32 +34,50 @@ const Pagination: React.FC<PaginationProps> = ({
     }
   };
 
+  const prevArrowClass = `flex items-center ${
+    isFirstPage ? 'text-gray-400' : ''
+  } border-2 border-white hover:border-red hover:text-red py-1 rounded-lg`;
+
+  const nextArrowClass = `flex items-center ${
+    isLastPage ? 'text-gray-400' : ''
+  } border-2 border-white hover:border-red hover:text-red py-1 rounded-lg transform rotate-180`;
+
   return (
     <nav>
       <ul className="flex cursor-pointer">
-        {!isFirstPage && (
-          <li className="mr-1">
-            <div
-              className="flex items-center border-2 hover:bg-blue-400 hover:text-white px-2 py-2 rounded-full "
-              onClick={() => {
-                handlePageChange(prevPage);
-              }}
-            >
-              <PreviousIcon height={25} width={25} />
-            </div>
-          </li>
-        )}
+        <li>
+          <div
+            className={prevArrowClass}
+            onClick={() => {
+              handlePageChange(firstPage);
+            }}
+          >
+            <DoubleArrowIcon />
+          </div>
+        </li>
+        <li>
+          <div
+            className={prevArrowClass}
+            onClick={() => {
+              handlePageChange(
+                currentPage === firstPage ? firstPage : prevPage
+              );
+            }}
+          >
+            <ArrowIcon className={!firstPage ? 'text-blue-600' : ''} />
+          </div>
+        </li>
 
         {pages.map((page) => {
           const isCurrentPage = currentPage === page;
-          const className = isCurrentPage
-            ? 'border-2 bg-blue-400 text-white px-4 py-2 rounded-full'
-            : 'border-2 hover:bg-blue-400 hover:text-white px-4 py-2 rounded-full';
+          const isSelected = isCurrentPage
+            ? 'border-2 bg-red text-white text-sm font-bold px-3 py-1 rounded-lg'
+            : 'border-2 border-white hover:border-red text-gray-400 hover:text-red text-sm font-semibold hover:font-semibold px-3 py-1 rounded-lg';
 
           return (
-            <li key={page} className="mr-1">
+            <li key={page}>
               <div
-                className={className}
+                className={isSelected}
                 onClick={() => {
                   handlePageChange(page);
                 }}
@@ -68,18 +88,27 @@ const Pagination: React.FC<PaginationProps> = ({
           );
         })}
 
-        {!isLastPage && (
-          <li className="mr-1">
-            <div
-              className="flex items-center border-2 hover:bg-blue-400 hover:text-white px-2 py-2 rounded-full"
-              onClick={() => {
-                handlePageChange(nextPage);
-              }}
-            >
-              <NextIcon height={25} width={25} />
-            </div>
-          </li>
-        )}
+        {endIndex < totalPages && <li className="ellipsis">...</li>}
+        <li>
+          <div
+            className={nextArrowClass}
+            onClick={() => {
+              handlePageChange(currentPage === lastPage ? lastPage : nextPage);
+            }}
+          >
+            <ArrowIcon />
+          </div>
+        </li>
+        <li>
+          <div
+            className={nextArrowClass}
+            onClick={() => {
+              handlePageChange(lastPage);
+            }}
+          >
+            <DoubleArrowIcon />
+          </div>
+        </li>
       </ul>
     </nav>
   );
