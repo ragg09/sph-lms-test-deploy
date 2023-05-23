@@ -11,6 +11,7 @@ export const courseSchema = yup.object().shape({
     .mixed<FileList | File>()
     .test('is-valid-type', 'Invalid image type', (value) => {
       if (value) {
+        if (typeof value === 'string') return true;
         return isValidFileType(
           value instanceof FileList ? value[0].name.toLowerCase() : value.name.toLowerCase(),
           'image'
@@ -19,6 +20,7 @@ export const courseSchema = yup.object().shape({
     })
     .test('is-valid-size', 'Maximum allowed image size is 3MB', (picture) => {
       if (picture) {
+        if (typeof picture === 'string') return true;
         const size = picture instanceof FileList ? picture[0].size : picture.size;
         return size <= MAX_FILE_SIZE;
       }
