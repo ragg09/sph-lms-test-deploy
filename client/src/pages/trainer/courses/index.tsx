@@ -18,7 +18,6 @@ const CoursesListPage: React.FC = () => {
     data: { results: courses = [], totalPages, current_page_number: currentPage } = {},
     isLoading,
     error,
-    refetch,
   } = useGetCoursesQuery({ search, page });
 
   useEffect(() => {
@@ -27,7 +26,7 @@ const CoursesListPage: React.FC = () => {
       delete query.search;
       void router.replace({ query });
     }
-  }, [search, refetch]);
+  }, [search]);
 
   if (isLoading) {
     return <div>Loading...</div>;
