@@ -1,4 +1,4 @@
-[ 
+[
   {
     "model": "app_sph_lms.Class",
     "fields": {
@@ -3379,7 +3379,7 @@
     "updated_at": "2023-03-08T07:49:25.862880Z"
   }
 },
-    
+
     {
         "model": "app_sph_lms.User",
         "fields": {
