@@ -19,8 +19,8 @@ export interface UserDetails {
 
 export interface Course {
   id: number;
-  image: string;
-  title: string;
+  img_path: string;
+  name: string;
   description: string;
   ratings: number;
   categories: CourseCategory[];

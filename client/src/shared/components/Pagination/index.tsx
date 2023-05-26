@@ -13,19 +13,16 @@ const Pagination: React.FC<PaginationProps> = ({
   maxPages,
   totalPages,
   currentPage,
-  onChangePage
+  onChangePage,
 }) => {
   const startIndex = Math.max(currentPage - Math.floor(maxPages / 2), 0);
-  const endIndex = Math.min(startIndex + maxPages, totalPages);
-  const pages = Array.from(
-    { length: endIndex - startIndex },
-    (_, i) => startIndex + i + 1
-  );
-  const prevPage: number = currentPage - 1;
-  const nextPage: number = currentPage + 1;
-  const isFirstPage: boolean = currentPage === 1;
+  const endIndex = Math.min(startIndex + parseInt(maxPages), totalPages);
+  const pages = Array.from({ length: endIndex - startIndex }, (_, i) => startIndex + i + 1);
+  const prevPage: number = parseInt(currentPage) - 1;
+  const nextPage: number = parseInt(currentPage) + 1;
+  const isFirstPage: boolean = parseInt(currentPage) === 1;
   const firstPage: number = 1;
-  const isLastPage: boolean = currentPage === totalPages;
+  const isLastPage: boolean = parseInt(currentPage) === totalPages;
   const lastPage: number = totalPages;
 
   const handlePageChange = (page: number): void => {
@@ -35,37 +32,37 @@ const Pagination: React.FC<PaginationProps> = ({
   };
 
   const prevArrowClass = `flex items-center ${
-    isFirstPage ? 'text-gray-400' : ''
+    isFirstPage ? 'text-gray-400 cursor-not-allowed' : ''
   } border-2 border-white hover:border-red hover:text-red py-1 rounded-lg`;
 
   const nextArrowClass = `flex items-center ${
-    isLastPage ? 'text-gray-400' : ''
+    isLastPage ? 'text-gray-400 cursor-not-allowed' : ''
   } border-2 border-white hover:border-red hover:text-red py-1 rounded-lg transform rotate-180`;
 
   return (
     <nav>
       <ul className="flex cursor-pointer">
         <li>
-          <div
+          <button
             className={prevArrowClass}
             onClick={() => {
               handlePageChange(firstPage);
             }}
+            disabled={isFirstPage}
           >
             <DoubleArrowIcon />
-          </div>
+          </button>
         </li>
         <li>
-          <div
+          <button
             className={prevArrowClass}
             onClick={() => {
-              handlePageChange(
-                currentPage === firstPage ? firstPage : prevPage
-              );
+              handlePageChange(currentPage === firstPage ? firstPage : prevPage);
             }}
+            disabled={currentPage === firstPage}
           >
             <ArrowIcon className={!firstPage ? 'text-blue-600' : ''} />
-          </div>
+          </button>
         </li>
 
         {pages.map((page) => {
@@ -76,38 +73,40 @@ const Pagination: React.FC<PaginationProps> = ({
 
           return (
             <li key={page}>
-              <div
+              <button
                 className={isSelected}
                 onClick={() => {
                   handlePageChange(page);
                 }}
               >
                 {page}
-              </div>
+              </button>
             </li>
           );
         })}
 
         {endIndex < totalPages && <li className="ellipsis">...</li>}
         <li>
-          <div
+          <button
             className={nextArrowClass}
             onClick={() => {
               handlePageChange(currentPage === lastPage ? lastPage : nextPage);
             }}
+            disabled={currentPage === lastPage}
           >
             <ArrowIcon />
-          </div>
+          </button>
         </li>
         <li>
-          <div
+          <button
             className={nextArrowClass}
             onClick={() => {
               handlePageChange(lastPage);
             }}
+            disabled={isLastPage}
           >
             <DoubleArrowIcon />
-          </div>
+          </button>
         </li>
       </ul>
     </nav>

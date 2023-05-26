@@ -1,3 +1,4 @@
+import { getCourse } from '@/services/courseAPI';
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import counterReducer from '../features/counter/counterSlice';
@@ -5,7 +6,6 @@ import courseReducer from '../features/course/courseSlice';
 import lessonModalsReducer from '../features/course/lessonModalsSlice';
 import stepperReducer from '../features/stepper/stepperSlice';
 import tabReducer from '../features/tab/tabSlice';
-import { getCourse } from '@/services/courseAPI';
 import { getCourseTrainee } from '@/services/traineeAPI';
 
 export const store = configureStore({
