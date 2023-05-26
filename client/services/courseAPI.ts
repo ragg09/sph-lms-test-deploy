@@ -16,9 +16,9 @@ export const getCourse = createApi({
     }),
     getCourses: builder.query({
       query: ({ search, page }) => {
-        const searchParam = search ? `search=${search}` : '';
-        const pageParam = page ? `&page=${page}` : '';
-        return `course?${searchParam}${pageParam}`;
+        const pageParam = page ? `page=${page}` : '';
+        const searchParam = search ? `&search=${search}` : '';
+        return `course?${pageParam}${searchParam}`;
       },
     }),
   }),

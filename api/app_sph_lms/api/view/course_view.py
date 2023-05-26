@@ -5,6 +5,7 @@ from rest_framework import generics
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
+
 class LargeResultsSetPagination(PageNumberPagination):
     page_size = 12
     page_size_query_param = 'page_size'
@@ -26,6 +27,16 @@ class CourseList(generics.ListCreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
     pagination_class = LargeResultsSetPagination
+    search_fields = ['name']
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        name = self.request.query_params.get('search', None)
+
+        if name:
+            queryset = queryset.filter(name__icontains=name)
+
+        return queryset
 
     def create(self, request, *args, **kwargs):
         response = super().create(request, *args, **kwargs)
