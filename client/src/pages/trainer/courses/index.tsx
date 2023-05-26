@@ -44,6 +44,7 @@ const CoursesListPage: React.FC = () => {
       });
     }
     setSearch(search);
+    setPage(1);
   };
 
   const handleChangePageEvent = (page: number): void => {

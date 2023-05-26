@@ -19,6 +19,13 @@ const SearchBar: React.FC<SearchBarProps> = ({
     onSearchEvent(searchTerm);
   };
 
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    if (e.target.value === '') {
+      onSearchEvent('');
+    }
+    setSearchTerm(e.target.value);
+  };
+
   const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>): void => {
     if (event.key === 'Enter') {
       handleSearch();
@@ -45,7 +52,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
         type="text"
         value={searchTerm}
         onChange={(e) => {
-          setSearchTerm(e.target.value);
+          onChange(e);
         }}
         placeholder={placeholder}
         className={`pr-3 pl-10 py-2 font-semibold placeholder-gray-500 text-black rounded ring-2 ring-gray-300 focus:ring-gray-500 focus:ring-2 ${className}`}
