@@ -10,13 +10,31 @@ export const getCourseTrainee = createApi({
       return headers;
     },
   }),
+  tagTypes: ['CourseTrainee'],
   endpoints: (builder) => ({
     getLearner: builder.query({
-      query: ({ courseID, maxEntries }) => {
-        return `course/${courseID}/trainee?max_entries=${maxEntries}`;
-      },
+      query: ({ courseId, isEnrolled, searchQuery, pageNumber }) => ({
+        url: `course/${courseId}/trainee`,
+        params: {
+          is_enrolled: isEnrolled,
+          search: searchQuery,
+          page: pageNumber,
+        },
+      }),
+      providesTags: ['CourseTrainee'],
+    }),
+    enrollLearner: builder.mutation({
+      query: ({ courseId, postData }) => ({
+        url: `course/${courseId}/trainee`,
+        method: 'POST',
+        body: JSON.stringify(postData),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }),
+      invalidatesTags: ['CourseTrainee'],
     }),
   }),
 });
 
-export const { useGetLearnerQuery } = getCourseTrainee;
+export const { useGetLearnerQuery, useEnrollLearnerMutation } = getCourseTrainee;
