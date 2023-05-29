@@ -13,13 +13,18 @@ export interface SortDropdownProps {
   onChange: (value: string) => void;
 }
 
-const SortDropdown: React.FC<SortDropdownProps> = ({ buttonText, buttonIcon, options, onChange }: SortDropdownProps) => {
+const SortDropdown: React.FC<SortDropdownProps> = ({
+  buttonText,
+  buttonIcon,
+  options,
+  onChange,
+}: SortDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState<SortOption | null>(null);
   const optionsCount: number = options.length - 1;
 
   const handleOptionSelect = (option: SortOption): void => {
-    setSelectedOption(option.value);
+    setSelectedOption(option);
     onChange(option.value);
     setIsOpen(false);
   };
@@ -28,13 +33,20 @@ const SortDropdown: React.FC<SortDropdownProps> = ({ buttonText, buttonIcon, opt
     <div className="relative border border-gray-500 rounded-md">
       <button
         type="button"
-        className="flex items-center justify-between w-[219px] py-[3px] text-sm"
+        className="flex items-center justify-between w-[219px] text-sm"
         onClick={() => {
           setIsOpen(!isOpen);
         }}
       >
-        <span className="flex  border-gray-500 px-2 py-[2px] rounded">
-          {selectedOption || buttonText}
+        <span className="flex  border-gray-500 text-[14px] px-2 rounded">
+          {selectedOption ? (
+            <>
+              {selectedOption.label}
+              {selectedOption.icon && <span>{selectedOption.icon}</span>}
+            </>
+          ) : (
+            buttonText
+          )}
         </span>
         <span>{buttonIcon}</span>
       </button>
