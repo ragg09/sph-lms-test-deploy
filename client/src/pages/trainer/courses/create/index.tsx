@@ -12,6 +12,9 @@ import AddLessonSection from '@/src/sections/courses/create/AddLessonSection';
 import PreviewSection from '@/src/sections/courses/create/PreviewSection';
 import { setIsStepValid } from '@/features/stepper/stepperSlice';
 import { useRouter } from 'next/router';
+import { reset } from '@/features/course/courseSlice';
+import { useCreateCourseMutation } from '@/services/courseAPI';
+import { alertError, alertSuccess } from '@/src/shared/utils/toastify';
 
 const Create: FC = () => {
   const { activeStep } = useAppSelector((state) => state.stepper);
@@ -50,6 +53,8 @@ const Create: FC = () => {
     }
   };
 
+  const [createCourse] = useCreateCourseMutation();
+
   const onNext = async (): Promise<boolean> => {
     switch (activeStep) {
       case 0:
@@ -58,15 +63,29 @@ const Create: FC = () => {
         }
         return await trigger(['name', 'category']);
       case 2:
-        /*
-            Please collect the form inputs in here, since user is at the preview section, crouseSlice should have all the necessary info we need to save in db
+        try {
+          const data = {
+            ...values,
+            category: values.category.map(({ id }) => id),
+          };
+          const res = await createCourse(data);
 
-            Please reset the courseSlice and stepperSlice to initial values once the from values are saved in db
-        */
-        return await push('/trainer/courses');
+          if ('error' in res) {
+            throw new Error('Failed to create course');
+          } else {
+            alertSuccess('Created courses successfully');
+            await push('/trainer/courses');
+            dispatch(reset());
+          }
+        } catch (error) {
+          alertError('Error saving course data. Please try again.');
+        }
+        break;
       default:
         return validateSteps();
     }
+
+    return false;
   };
 
   useEffect(() => {

@@ -21,7 +21,14 @@ export const getCourse = createApi({
         return `course?${pageParam}${searchParam}`;
       },
     }),
+    createCourse: builder.mutation({
+      query: (courseData) => ({
+        url: 'course/',
+        method: 'POST',
+        body: courseData,
+      }),
+    }),
   }),
 });
 
-export const { useGetCourseQuery, useGetCoursesQuery } = getCourse;
+export const { useGetCourseQuery, useGetCoursesQuery, useCreateCourseMutation } = getCourse;
