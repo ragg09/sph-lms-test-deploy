@@ -5,7 +5,7 @@ const Home = (): ReactNode => {
     <Fragment>
       <div className="h-screen flex flex-col justify-center items-center bg-blue-100">
         <h1 className="text-5xl font-bold mb-10">
-          Welcome to the LMS Homepage
+          Welcome to the LMS Homepage Ragg
         </h1>
         <p className="text-lg font-medium mb-10">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed suscipit
